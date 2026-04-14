@@ -99,8 +99,10 @@ export function runScenario(inputs: ScenarioInputs): ScenarioOutputs {
     * policyMult
     * (1 + (timeframe - 1) * 0.18)   // time compounding
 
+  // employmentElasticity = jobs supported per $1M of incremental economic output
+  // scenarioMult is already embedded in totalEconomicOutput — do not apply twice
   const employmentDelta = Math.round(
-    totalEconomicOutput / 1_000_000 * priv.employmentElasticity * 1_000_000 * scenarioMult
+    (totalEconomicOutput / 1_000_000) * priv.employmentElasticity
   )
 
   // --- Module E: Distributional impact ---
