@@ -32,7 +32,7 @@ export const NYC_BASELINE = {
   // Model calibration (kept server-side)
   _private: {
     outputMultiplier: 1.8,           // regional economic multiplier
-    employmentElasticity: 0.045,     // jobs per $1M economic output
+    employmentElasticity: 32,         // jobs supported per $1M of incremental economic output (music sector, NYC)
     royaltyPassThrough: 0.72,        // % of royalties reaching artists
     giniImprovementPerPoint: 0.004,  // Gini reduction per 1% adoption
     povertyLiftPerPoint: 0.0012,     // poverty rate reduction per 1% adoption
