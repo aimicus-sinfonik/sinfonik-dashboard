@@ -39,7 +39,12 @@ const fmt = (n: number, decimals = 0) =>
   new Intl.NumberFormat('en-US', { maximumFractionDigits: decimals }).format(n)
 
 const fmtM = (n: number) => `$${(n / 1_000_000).toFixed(1)}M`
-const fmtK = (n: number) => `$${(n / 1_000).toFixed(0)}K`
+// Smart formatter: uses $M for ≥1M, $K for ≥1K, else raw $
+const fmtIncome = (n: number) => {
+  if (Math.abs(n) >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)}M`
+  if (Math.abs(n) >= 1_000) return `$${(n / 1_000).toFixed(1)}K`
+  return `$${Math.round(n).toLocaleString()}`
+}
 
 function buildTimeline(result: ScenarioResult | null) {
   const base = 1_100_000_000
@@ -107,8 +112,8 @@ export default function DashboardPage() {
             </p>
           </div>
           <div className="flex gap-3 text-sm">
-            {['conservative', 'base', 'accelerated'].map(s => (
-              <button key={s} onClick={() => setInputs(i => ({ ...i, scenarioType: s as 'conservative' | 'base' | 'accelerated' }))}
+            {(['conservative', 'base', 'accelerated'] as const).map(s => (
+              <button key={s} onClick={() => setInputs(i => ({ ...i, scenarioType: s }))}
                 className={`px-3 py-1.5 rounded-lg capitalize font-medium transition-all ${inputs.scenarioType === s ? 'bg-sky-500 text-white' : 'text-slate-400 hover:text-white'}`}
                 style={inputs.scenarioType !== s ? { background: 'rgba(255,255,255,0.06)' } : {}}
               >{s}</button>
@@ -161,9 +166,9 @@ export default function DashboardPage() {
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-          <MetricCard label="Median Songwriter Income" baseline="$33,50/yr"
-            scenario={result ? fmtK(result.medianIncomeTotal) : '—'}
-            delta={result ? `+${fmtK(result.medianIncomeLift)}/yr` : '—'} icon={<DollarSign size={16} />} />
+          <MetricCard label="Median Songwriter Income" baseline="$33,500/yr"
+            scenario={result ? fmtIncome(result.medianIncomeTotal) : '—'}
+            delta={result ? `+${fmtIncome(result.medianIncomeLift)}/yr` : '—'} icon={<DollarSign size={16} />} />
           <MetricCard label="Mechanical Royalty Lift" sublabel="Additional flow to songwriters"
             baseline="$22M baseline pool"
             scenario={result ? fmtM(22_000_000 + result.mechanicalRoyaltyLift) : '—'}
@@ -188,7 +193,7 @@ export default function DashboardPage() {
             <p className="text-xs text-slate-600 mt-3">Confidence range: {fmtM(result.confidenceLow)} – {fmtM(result.confidenceHigh)} (±15% base / ±25% other scenarios)</p>
           </div>
         )}
-        {loading && (<div className="fixed bottom-6 right-6 card-glass rounded-full px-4 py-2 text-xs text-sky-400 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />Recalculating…</div>)}
+        {loading && (<div className="fixed bottom-6 right-6 card-glass rounded-full px-4 py-2 text-xs text-sky-400 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />Recalculating…</div>  )}
       </div>
     </div>
   )
