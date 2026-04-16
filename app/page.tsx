@@ -12,13 +12,13 @@ const STATS = [
 const FEATURES = [
   {
     title: 'Baseline vs. Sinfonik',
-    desc: 'Compare current economic conditions to projected outcomes with Sinfonik adoption across NYC venues and businesses.',
+    desc: "Compare current economic conditions to projected outcomes with Sinfonik adoption across NYC venues and businesses.",
     icon: TrendingUp,
     color: 'from-sky-500 to-blue-600',
   },
   {
     title: 'Songwriter Equity',
-    desc: 'Model changes to income distribution, Gini coefficient, and poverty rates for NYC\'s songwriter community.',
+    desc: "Model changes to income distribution, Gini coefficient, and poverty rates for NYC's songwriter community.",
     icon: Users,
     color: 'from-violet-500 to-purple-600',
   },
@@ -35,9 +35,7 @@ export default function HomePage() {
     <div className="min-h-screen">
       <Navigation />
 
-      {/* Hero */}
       <section className="relative flex flex-col items-center justify-center min-h-screen px-6 text-center pt-20">
-        {/* Background glow */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10"
             style={{ background: 'radial-gradient(circle, #0ea5e9 0%, transparent 70%)' }} />
@@ -47,14 +45,14 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-8 text-xs font-medium text-sky-300 tracking-wide uppercase"
             style={{ background: 'rgba(14,165,233,0.1)', border: '1px solid rgba(14,165,233,0.2)' }}>
             <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
-            NYC Regional Impact Model — Public Preview
+            NYC Regional Impact Model - Public Preview
           </div>
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-none">
             <span className="text-white">If New York City adopted</span>
             <br />
             <span className="gradient-text">Sinfonik</span>
-            <span className="text-white">…</span>
+            <span className="text-white">...</span>
           </h1>
 
           <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-4 leading-relaxed">
@@ -63,19 +61,17 @@ export default function HomePage() {
           </p>
 
           <p className="text-sm text-slate-500 max-w-xl mx-auto mb-10">
-            Starting with New York City — then generalizing to any region.
+            Starting with New York City -- then generalizing to any region.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/dashboard"
+            <Link href="/dashboard"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white bg-sky-500 hover:bg-sky-400 transition-colors shadow-lg shadow-sky-500/30"
             >
               Explore NYC Dashboard
               <ArrowRight size={16} />
             </Link>
-            <Link
-              href="/scenario-lab"
+            <Link href="/scenario-lab"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-slate-300 hover:text-white transition-colors"
               style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}
             >
@@ -85,7 +81,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats bar */}
       <section className="py-12 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
           {STATS.map(({ label, value, icon: Icon }) => (
@@ -98,7 +93,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Feature cards */}
       <section className="py-16 px-6">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-white text-center mb-12">
@@ -118,7 +112,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-20 px-6 text-center">
         <div className="max-w-2xl mx-auto card-glass rounded-3xl p-12">
           <h2 className="text-3xl font-bold text-white mb-4">
@@ -126,10 +119,9 @@ export default function HomePage() {
           </h2>
           <p className="text-slate-400 mb-8 leading-relaxed">
             This public dashboard shows the headline story. The strategic modeling engine that
-            powers it remains private — so you can share insights without revealing your competitive edge.
+            powers it remains private -- so you can share insights without revealing your competitive edge.
           </p>
-          <Link
-            href="/dashboard"
+          <Link href="/dashboard"
             className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 transition-all shadow-lg shadow-sky-500/20"
           >
             Open the Dashboard
@@ -138,10 +130,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="py-8 px-6 text-center border-t border-white/5">
         <p className="text-xs text-slate-600">
-          © {new Date().getFullYear()} Sinfonik. All projections are model estimates.
+          &copy; {new Date().getFullYear()} Sinfonik. All projections are model estimates.
           Economic outputs, employment figures, and distributional metrics are illustrative,
           not guarantees.
         </p>
