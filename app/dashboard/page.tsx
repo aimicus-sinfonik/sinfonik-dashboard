@@ -42,11 +42,18 @@ interface RegionData {
   mechanicalRoyaltyPool: number
 }
 
-const DEFAULT_INPUTS = {
+interface DashboardInputs {
+  adoptionRate: number
+  localArtistShare: number
+  scenarioType: 'conservative' | 'base' | 'accelerated'
+  timeframeYears: 1 | 3 | 5
+}
+
+const DEFAULT_INPUTS: DashboardInputs = {
   adoptionRate: 0.3,
   localArtistShare: 0.5,
-  scenarioType: 'base' as const,
-  timeframeYears: 3 as 1 | 3 | 5,
+  scenarioType: 'base',
+  timeframeYears: 3,
 }
 
 const fmt = (n: number, d = 0) =>
